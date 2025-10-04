@@ -45,8 +45,12 @@ app.post("/api/login", (req, res) => {
 });
 
 // Fallback for direct page navigation (optional)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "signup.html"));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirnam, "signup.html"));
+});
+
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirnam, "login.html"));
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
