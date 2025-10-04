@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const users = [];
 
 // Signup API
-app.post("/", (req, res) => {
+app.post("api/signup", (req, res) => {
   const { username, password } = req.body;
 
   if (users.find(u => u.username === username)) {
@@ -33,7 +33,7 @@ app.post("/", (req, res) => {
 });
 
 // Login API
-app.post("/login", (req, res) => {
+app.post("api/login", (req, res) => {
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username && u.password === password);
