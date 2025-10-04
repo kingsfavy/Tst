@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const users = [];
 
 // Signup API
-app.post("/signup", (req, res) => {
+app.post("/api/signup", (req, res) => {
   const { username, password } = req.body;
 
   if (users.find(u => u.username === username)) {
@@ -33,7 +33,7 @@ app.post("/signup", (req, res) => {
 });
 
 // Login API
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username && u.password === password);
@@ -45,12 +45,8 @@ app.post("/login", (req, res) => {
 });
 
 // Fallback for direct page navigation (optional)
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "login.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "signup.html"));
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
