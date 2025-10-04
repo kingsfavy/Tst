@@ -1,4 +1,3 @@
-
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
@@ -15,12 +14,11 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
 // Serve static files (frontend pages)
-app.use(express.static(path.join(__dirname, "public")));
-
+//*app.use(express.static(path.join(__dirname, "public")));
 // Fake user storage
 const users = [];
 
-// Signup API
+// ✅ Signup API
 app.post("/api/signup", (req, res) => {
   const { username, password } = req.body;
 
@@ -32,7 +30,7 @@ app.post("/api/signup", (req, res) => {
   res.json({ message: "Signup successful! Please login." });
 });
 
-// Login API
+// ✅ Login API
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -44,13 +42,13 @@ app.post("/api/login", (req, res) => {
   res.json({ message: "Login successful!", user: { username } });
 });
 
-// Fallback for direct page navigation (optional)
+// Fallback for direct page navigation
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirnam, "signup.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirnam, "login.html"));
+  res.sendFile(path.join(__dirname, "login.html"));
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
