@@ -36,7 +36,7 @@ app.post("https://tst-76l6.onrender.com/", (req, res) => {
 });
 
 // ✅ Login API
-app.post("https://tst-76l6.onrender.com/login", (req, res) => {
+app.post("api/login", (req, res) => {
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username && u.password === password);
