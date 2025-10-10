@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 const users = [];
 
 // ✅ Signup API
-app.post("https://tst-76l6.onrender.com/", (req, res) => {
+app.post("api/signup", (req, res) => {
   const { username, password } = req.body;
 
   if (users.find(u => u.username === username)) {
