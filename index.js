@@ -2,8 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
-import cors from "cors";
-app.use(cors({ origin: "https://tst-76l6.onrender.com" }));
+//import cors from "cors";
+//app.use(cors({ origin: "https://tst-76l6.onrender.com" }));
 
 
 
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 const users = [];
 
 // ✅ Signup API
-app.post("/https://tst-76l6.onrender.com/", (req, res) => {
+app.post("https://tst-76l6.onrender.com/", (req, res) => {
   const { username, password } = req.body;
 
   if (users.find(u => u.username === username)) {
@@ -36,7 +36,7 @@ app.post("/https://tst-76l6.onrender.com/", (req, res) => {
 });
 
 // ✅ Login API
-app.post("/https://tst-76l6.onrender.com/login", (req, res) => {
+app.post("https://tst-76l6.onrender.com/login", (req, res) => {
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username && u.password === password);
