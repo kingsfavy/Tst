@@ -2,6 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
+import cors from "cors";
+app.use(cors({ origin: "https://tst-1-r07n.onrender.com" }));
+
+
+
 
 // Fix for __dirname (not available in ES modules)
 const __filename = fileURLToPath(import.meta.url);
