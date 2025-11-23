@@ -3,27 +3,24 @@ import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
-app.use(cors());
 
-
-
-
-// Fix for __dirname (not available in ES modules)
+// Fix __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Create app
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "public"))); // if you have frontend files
 
-// Serve static files (frontend pages)
-//*app.use(express.static(path.join(__dirname, "public")));
 // Fake user storage
 const users = [];
 
-// ✅ Signup API
+// Signup route
 app.post("/signup", (req, res) => {
   const { username, password } = req.body;
 
@@ -35,7 +32,7 @@ app.post("/signup", (req, res) => {
   res.json({ message: "Signup successful! Please login." });
 });
 
-// ✅ Login API
+// Login route
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -47,7 +44,7 @@ app.post("/login", (req, res) => {
   res.json({ message: "Login successful!", user: { username } });
 });
 
-// Fallback for direct page navigation
+// Page routes
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -56,4 +53,5 @@ app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "login.html"));
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`)
+// Start server
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
