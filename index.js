@@ -2,8 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
-//import cors from "cors";
-//app.use(cors({ origin: "https://tst-76l6.onrender.com" }));
+import cors from "cors";
+app.use(cors({ origin: "https://localhost:5000" }));
 
 
 
