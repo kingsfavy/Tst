@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 const users = [];
 
 // ✅ Signup API
-app.post("api/signup", (req, res) => {
+app.post("/signup", (req, res) => {
   const { username, password } = req.body;
 
   if (users.find(u => u.username === username)) {
@@ -36,7 +36,7 @@ app.post("api/signup", (req, res) => {
 });
 
 // ✅ Login API
-app.post("api/login", (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username && u.password === password);
