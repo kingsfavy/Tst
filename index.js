@@ -8,19 +8,18 @@ import cors from "cors";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Create app
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "public"))); // if you have frontend files
+app.use(express.static(path.join(__dirname, "public")));  // <-- important
 
-// Fake user storage
+// Fake user database
 const users = [];
 
-// Signup route
+// Signup
 app.post("/signup", (req, res) => {
   const { username, password } = req.body;
 
@@ -32,7 +31,7 @@ app.post("/signup", (req, res) => {
   res.json({ message: "Signup successful! Please login." });
 });
 
-// Login route
+// Login
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -44,14 +43,13 @@ app.post("/login", (req, res) => {
   res.json({ message: "Login successful!", user: { username } });
 });
 
-// Page routes
+// Routes for pages
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, + "index.html"));
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, + "login.html"));
+  res.sendFile(path.join(__dirname, "public/login.html"));
 });
 
-// Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
